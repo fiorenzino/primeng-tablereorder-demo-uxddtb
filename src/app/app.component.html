@@ -1,0 +1,34 @@
+
+cols: <ul>
+  <li  *ngFor="let item of cols; index as i">
+ <b>  {{item.field}} <a (click)="remove(i)">-</a></b>
+  </li>
+</ul>
+<br>
+diff: <ul>
+<li  *ngFor="let diff of difference; index as i">
+<b>  {{diff.field}} <a (click)="add(i)">+</a></b>
+</li>
+</ul>
+<br>
+<p-table [value]="products" [columns]="cols" [reorderableColumns]="true"
+(onColReorder)="myFilter($event)">
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th style="width:3rem"></th>
+            <th *ngFor="let col of columns" pReorderableColumn>
+                {{col.header}}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex">
+        <tr>
+            <td>
+               
+            </td>
+            <td *ngFor="let col of columns">
+                {{rowData[col.field]}}
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
